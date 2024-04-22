@@ -1,0 +1,23 @@
+[Unit]
+Description=Touch Grass Service
+After=network.target
+
+[Service]
+# Set the working directory where main.py resides
+WorkingDirectory=/root/Grass-Multi
+
+# Use the system's default python interpreter
+ExecStart=/usr/bin/python /root/Grass-Multi/main.py
+
+# Set the user running the service
+User=root
+
+# Restart the service on failure
+Restart=always
+
+# kinda solves the too many open files error
+LimitNOFILE=16384
+LimitCORE=infinity
+
+[Install]
+WantedBy=multi-user.target
